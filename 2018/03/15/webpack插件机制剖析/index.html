@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="js,webpack," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="webpack流程概述   根据webpack配置文件及命令行配置等初始化webpack，构建compliler对象 run() 开始webpack工作，compiler具体划分为Compiler和Watching对象 compile() 开始编译构建，生成compilation对象,该对象保留了对compile对象的引用，负责整个编译过程 找到入口文件 用工厂方式创建模块，构建模块依赖链 bu">
+<meta name="keywords" content="js,webpack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/03/01/hello-world/index.html">
+<meta property="og:title" content="webpack插件机制剖析">
+<meta property="og:url" content="http://yoursite.com/2018/03/15/webpack插件机制剖析/index.html">
 <meta property="og:site_name" content="美女前端的技术分享">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="webpack流程概述   根据webpack配置文件及命令行配置等初始化webpack，构建compliler对象 run() 开始webpack工作，compiler具体划分为Compiler和Watching对象 compile() 开始编译构建，生成compilation对象,该对象保留了对compile对象的引用，负责整个编译过程 找到入口文件 用工厂方式创建模块，构建模块依赖链 bu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-01T08:07:35.415Z">
+<meta property="og:updated_time" content="2018-03-15T01:54:50.731Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="webpack插件机制剖析">
+<meta name="twitter:description" content="webpack流程概述   根据webpack配置文件及命令行配置等初始化webpack，构建compliler对象 run() 开始webpack工作，compiler具体划分为Compiler和Watching对象 compile() 开始编译构建，生成compilation对象,该对象保留了对compile对象的引用，负责整个编译过程 找到入口文件 用工厂方式创建模块，构建模块依赖链 bu">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/01/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/15/webpack插件机制剖析/"/>
 
 
 
 
 
-  <title>Hello World | 美女前端的技术分享</title>
+  <title>webpack插件机制剖析 | 美女前端的技术分享</title>
   
 
 
@@ -232,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/01/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/15/webpack插件机制剖析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tangtang4321">
@@ -249,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">webpack插件机制剖析</h1>
         
 
         <div class="post-meta">
@@ -261,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T16:07:35+08:00">
-                2018-03-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T09:51:12+08:00">
+                2018-03-15
               </time>
             
 
@@ -271,6 +272,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -299,15 +322,61 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <blockquote>
+<p>webpack流程概述</p>
+</blockquote>
+<ul>
+<li>根据webpack配置文件及命令行配置等初始化webpack，构建compliler对象</li>
+<li>run() 开始webpack工作，compiler具体划分为Compiler和Watching对象</li>
+<li>compile() 开始编译构建，生成compilation对象,该对象保留了对compile对象的引用，负责整个编译过程</li>
+<li>找到入口文件</li>
+<li>用工厂方式创建模块，构建模块依赖链</li>
+<li>buildModule() 开始构建模块，进行loader预处理等</li>
+<li>模块构建完成后，开始对module,chunk进行整理，也就是各大插件plugin开始发挥作用，合并，压缩，优化等</li>
+<li>createChunkAssets() 开始创建输出资源</li>
+<li>emitAsserts() 输出资源到指定的目录</li>
+</ul>
+<a id="more"></a>
+<blockquote>
+<p>插件plugin</p>
+</blockquote>
+<p>我们初步看几个不同的plugin源码，就会发现plugin有以下特征：</p>
+<ul>
+<li>本身的构造函数</li>
+<li>原型上都包含一个apply()函数，apply函数注入了compiler对象</li>
+<li>在apply函数内部，都会通过compiler.plugin()挂载事件钩子，钩子的回调函数里注入了compilation对象，如果是异步编译插件还会有callback回调函数</li>
+<li>返回构造函数本身<br>具体每个插件的差异，就在于第三点里apply函数挂载的事件钩子，以及钩子回调函数里做的自定义编译流程、以及怎样处理compilation对象内部数据<br>代码理解下plugin的基本形态：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// my-plugin.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyPlugin</span>(<span class="params">option</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.option = option</span><br><span class="line">&#125;</span><br><span class="line">MyPlugin.prototype.apply = <span class="function"><span class="keyword">function</span>(<span class="params">compiler</span>)</span>&#123;</span><br><span class="line">  compiler.plugin(<span class="string">'emit'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">compilation,callback</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 自定义编译流程</span></span><br><span class="line">    <span class="comment">// 处理compilation数据</span></span><br><span class="line">    <span class="built_in">console</span>.log(compilation)</span><br><span class="line">    callback()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.export = MyPlugin</span><br></pre></td></tr></table></figure>
+<p>*在webpack运行的生命周期里，有很多重要的事件节点，如：compile(开始编译，生成complation之前)， make(开始构建模块),emit(在生成资源并输出到目录之前),当webpack执行的生命周期走到该节点的时候，就会调用挂载在该事件钩子上的函数，如上面MyPlugin挂载了emit的事件钩子，当webpack运行到emit节点时，就会调用该回调函数，执行这里的自定义编译流程了</p>
+<blockquote>
+<p>compiler对象</p>
+</blockquote>
+<p>compiler对象是webpack的核心–编译器对象，在webpack启动的时候一次性初始化，包含了webpack各项原始配置，如入口/输出/loader/plugin等，因此，在自定义插件的自定义编译流程中，可以通过compiler对象获取到webpack主环境信息<br>compiler生成compilation对象，让compilation对象帮助完成后续更细粒化的编译工作</p>
+<blockquote>
+<p>compilation对象</p>
+</blockquote>
+<p>compilation对象代表了一次单一的版本，开发环境中，检测到文件更新，就会执行一次新的编译，也就会生成新的compilation对象，从而生成一组新的编译资源<br>compilation对象和compiler对象一样，也可以挂载事件节点，如：optimize(开始优化)，这就是需要对编译资源进行压缩优化的关键节点<br>由此可见，如果开发者需要通过插件，改变编译后的资源产物，就离不开complation对象</p>
+<blockquote>
+<p>webpack插件机制</p>
+</blockquote>
+<p>webpack利用插件机制给我们提供了非常强大灵活的功能，除了已经提供好的丰富的插件外，还可以自行编写插件，自定义编译流程<br>根据上面的初步了解，我们可以总结webpack的插件机制：</p>
+<ul>
+<li>开发者通过webpack配置文件配置所有需要用到的plugin</li>
+<li>new webpack()时，读取所有配置的plugin,调用plugin.apply()方法</li>
+<li>plugin.apply方法执行时，通过compiler.plugin()挂载事件钩子，也就注册了插件，注册了自定义的编译流程</li>
+<li>webpack执行到每个生命周期节点时，运行该节点上所有的注册插件</li>
+</ul>
+<p>插件机制是webpack的核心，说到compiler和compilation对象，就不得不说说Tapable</p>
+<blockquote>
+<p>Tapable与Tapable实例</p>
+</blockquote>
+<p>compiler和compilation对象都是Tapable实例,Tapable抽象了插件机制，webpack的插件架构都是基于Tapable实现的<br>Tapable方法：</p>
+<ul>
+<li>apply - 执行给定插件的apply方法</li>
+<li>plugin - 该方法允许给Tapable实例事件注册自定义插件，这个方法我们已经在上面见过了:compiler.plugin(‘emit’,handler)</li>
+<li>applyPlugins(name) - 执行Tapable实例的注册事件name的所有插件的apply方法</li>
+</ul>
 
       
     </div>
@@ -323,6 +392,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+        </div>
+      
 
       
       
@@ -332,15 +409,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/03/01/webpack初入门/" rel="next" title="webpack初入门">
+                <i class="fa fa-chevron-left"></i> webpack初入门
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/01/webpack初入门/" rel="prev" title="webpack初入门">
-                webpack初入门 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -392,17 +469,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -472,22 +540,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
